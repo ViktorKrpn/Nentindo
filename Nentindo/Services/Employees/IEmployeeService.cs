@@ -1,4 +1,5 @@
 ﻿using Nentindo.Data;
+using Nentindo.Data.Models;
 
 namespace Nentindo.Services.Employees
 {

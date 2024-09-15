@@ -1,15 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Nentindo.Data.Models;
 
 namespace Nentindo.Data
 {
-    public class Employee
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-    }
-
     public class DatabaseContext: IdentityDbContext<User>
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
@@ -20,5 +14,4 @@ namespace Nentindo.Data
 
         public DbSet<Employee> Employees { get; set;}
     }
-
 }
