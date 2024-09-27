@@ -1,4 +1,6 @@
-﻿using Nentindo.Core.Domain.Users;
+﻿using Nentindo.Core.Domain.Companies;
+using Nentindo.Core.Domain.Users;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nentindo.Core.Domain.Newsletters
 {
@@ -12,7 +14,13 @@ namespace Nentindo.Core.Domain.Newsletters
         public string Summary { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
-        public int CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
+        [ForeignKey("CreatedByUserId")]
         public virtual User CreatedByUser { get; set; }
+        public int CompanyId { get; set; }
+        public virtual Company Company { get; set; }
+        public int? NewsletterId { get; set; }
+        public virtual Newsletter Newsletter { get; set; }
+
     }
 }

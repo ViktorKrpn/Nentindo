@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Nentindo.Services.Auth;
+using Nentindo.Services.Contacts;
 
 public class AppStart()
 {
@@ -41,9 +42,27 @@ public class AppStart()
              };
          });
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigins",
+                policy =>
+                {
+                    policy.WithOrigins("http://127.0.0.1:4200") // Allow Angular app origin
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+        });
+
+
+
+
         builder.Services.AddTransient<IAuthService, AuthService>();
+        builder.Services.AddTransient<IContactService, ContactService>();
+
 
         var app = builder.Build();
+
+        app.UseCors("AllowSpecificOrigins");
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())

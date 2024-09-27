@@ -1,24 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Nentindo.Core.Domain.Contacts;
+using Nentindo.Models;
 using Nentindo.Services.Contacts;
 
 namespace Nentindo.Controllers
 {
-    public class ContactsContoller : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ContactsController : ControllerBase
     {
         IContactService _contactService;
-        public ContactsContoller(IContactService contactService)
+        public ContactsController(IContactService contactService)
         {
             _contactService = contactService;
         }
-        public IActionResult Index()
+
+        [HttpGet("GetContacts")]
+        public async Task<IActionResult> GetContacts()
         {
-            return View();
+            var contacts = await _contactService.GetContacts();
+            var response = new GenericResponse<List<Contact>> { Result = contacts };
+            return Ok(response);
         }
 
-        [HttpGet]
-        public IActionResult Create()
+        [HttpGet("login")]
+        public async Task<IActionResult> Login()
         {
-
+            return Ok();
         }
     }
 }

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nentindo", "Nentindo\Nentindo.csproj", "{4DA0B8DB-030D-46B7-A144-75928A4F3EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nentindo", "Nentindo\Nentindo.csproj", "{4DA0B8DB-030D-46B7-A144-75928A4F3EA7}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Angular", "Angular\Angular.esproj", "{297C639F-57D9-44EB-9FF6-A2287BE27788}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{4DA0B8DB-030D-46B7-A144-75928A4F3EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DA0B8DB-030D-46B7-A144-75928A4F3EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DA0B8DB-030D-46B7-A144-75928A4F3EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{297C639F-57D9-44EB-9FF6-A2287BE27788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{297C639F-57D9-44EB-9FF6-A2287BE27788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{297C639F-57D9-44EB-9FF6-A2287BE27788}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{297C639F-57D9-44EB-9FF6-A2287BE27788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{297C639F-57D9-44EB-9FF6-A2287BE27788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{297C639F-57D9-44EB-9FF6-A2287BE27788}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

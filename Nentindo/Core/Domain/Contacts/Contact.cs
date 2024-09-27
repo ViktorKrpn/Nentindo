@@ -1,4 +1,5 @@
-﻿using Nentindo.Database.Models;
+﻿using Nentindo.Core.Domain.Contacts;
+using Nentindo.Core.Domain.Subscriptions;
 
 namespace Nentindo.Core.Domain.Contacts
 {
@@ -12,7 +13,6 @@ namespace Nentindo.Core.Domain.Contacts
         public virtual Supplier Supplier { get; set; }
         public int? SubcontractorId { get; set; }
         public virtual Subcontractor Subcontractor { get; set; }
-        public List<Subscribtion> Subscribtions { get; set; } = [];
-
+        public List<Subscription> Subscribtions { get; set; } = [];
     }
 }

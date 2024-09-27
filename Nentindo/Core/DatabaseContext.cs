@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nentindo.Core.Domain.Company;
+using Nentindo.Core.Domain.Companies;
 using Nentindo.Core.Domain.Contacts;
 using Nentindo.Core.Domain.Newsletters;
 using Nentindo.Core.Domain.Users;
-using Nentindo.Database.Models;
+using Nentindo.Core.Domain.Subscriptions;
+
 
 namespace Nentindo.Data
 {
@@ -22,6 +23,8 @@ namespace Nentindo.Data
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Newsletter> Newsletters { get; set; }
-        public DbSet<Subscribtion> Subscriptions { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
+
+     
     }
 }

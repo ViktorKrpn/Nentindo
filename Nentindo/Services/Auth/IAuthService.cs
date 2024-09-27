@@ -1,4 +1,4 @@
-﻿using Nentindo.Core.Domain.User;
+﻿using Nentindo.Core.Domain.Users;
 using Nentindo.Models;
 using Nentindo.Models.Auth.Requests;
 

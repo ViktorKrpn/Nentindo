@@ -2,11 +2,11 @@
 using Nentindo.Models.Auth.Requests;
 using Nentindo.Services.Auth;
 
-namespace JWTAuthentication.Controllers
+namespace Nentindo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticateController : Controller
+    public class AuthenticateController : ControllerBase
     {
         IAuthService _authService;
         public AuthenticateController(IAuthService authService)

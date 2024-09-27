@@ -4,7 +4,7 @@ using Nentindo.Data;
 
 namespace Nentindo.Services.Contacts
 {
-    public class ContactService
+    public class ContactService: IContactService
     {
         DatabaseContext _db;
 

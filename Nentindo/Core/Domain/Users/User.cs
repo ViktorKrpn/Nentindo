@@ -1,4 +1,5 @@
-﻿
+﻿using Nentindo.Core.Domain.Companies;
+
 namespace Nentindo.Core.Domain.Users
 {
     public class User
@@ -8,6 +9,8 @@ namespace Nentindo.Core.Domain.Users
         public string PasswordHashed { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int CompanyId { get; set; }
+        public Company Company { get; set; }
         public virtual List<Role> Roles { get; set; } = [];
     }
 }
