@@ -18,9 +18,16 @@ namespace Nentindo.Controllers
         [HttpGet("GetContacts")]
         public async Task<IActionResult> GetContacts()
         {
-            var contacts = await _contactService.GetContacts();
-            var response = new GenericResponse<List<Contact>> { Result = contacts };
-            return Ok(response);
+            try
+            {
+                var contacts = await _contactService.GetContacts();
+                var response = new GenericResponse<List<Contact>> { Result = contacts };
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         [HttpGet("login")]

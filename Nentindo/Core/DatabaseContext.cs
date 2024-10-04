@@ -6,6 +6,8 @@ using Nentindo.Core.Domain.Users;
 using Nentindo.Core.Domain.Subscriptions;
 
 
+/// add-migration firt
+/// update-database
 namespace Nentindo.Data
 {
     public class DatabaseContext: DbContext
