@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { IContact } from "../../types/contacts";
@@ -16,11 +16,18 @@ export class ContactsService {
 
   getContacts(): Observable<IGenericResponse<IContact[]>> {
     return this.http
-      .get<IGenericResponse<IContact[]>>('https://localhost:7229/api/Contacts/getContacts')
-      .pipe(map((response) => {
-        console.log('this is response from getContacts: ', response)
-        return response
-      }));
+      .get<IGenericResponse<IContact[]>>('https://localhost:7229/api/contacts')
+  }
+
+  createContact(contact: IContact): Observable<IGenericResponse<IContact>> {
+    return this.http
+      .post<any>('https://localhost:7229/api/contacts/create', contact)
+  }
+
+  getContactById(id: number): Observable<IGenericResponse<IContact>> {
+    return this.http
+      .get<IGenericResponse<IContact>>(`https://localhost:7229/api/contacts/${id}`)
+
   }
 
 }

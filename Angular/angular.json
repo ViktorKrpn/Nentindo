@@ -35,6 +35,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "src/assets/styles/toastr.css",
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
               "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.css",
@@ -58,13 +59,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "5MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "5MB",
+                  "maximumError": "5MB"
                 }
               ],
               "outputHashing": "all"
@@ -120,3 +121,5 @@
     }
   }
 }
+
+

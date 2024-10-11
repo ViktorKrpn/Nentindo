@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Create contact</h3>
+            </div>
+            <form [formGroup]="createContactForm" (ngSubmit)="onSubmit()">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="salutation">Salutation</label>
+                        <input class="form-control" id="salutation" formControlName="salutation" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input class="form-control" id="firstName" formControlName="firstName" type="text">
+                        <div style="color:red"
+                            *ngIf="createContactForm.get('firstName')?.invalid && createContactForm.get('firstName')?.touched">
+                            First name is required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last name</label>
+                        <input class="form-control" id="lastName" formControlName="lastName" type="text">
+                        <div style="color:red"
+                            *ngIf="createContactForm.get('lastName')?.invalid && createContactForm.get('lastName')?.touched">
+                            Last name is required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" id="email" formControlName="email" type="email">
+                        <div style="color:red"
+                            *ngIf="createContactForm.get('email')?.invalid && createContactForm.get('email')?.touched">
+                            Valid email is required.
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="supplierId">Supplier ID</label>
+                        <input class="form-control" id="supplierId" formControlName="supplierId" type="number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subcontractorId">Subcontractor ID</label>
+                        <input class="form-control" id="subcontractorId" formControlName="subcontractorId"
+                            type="number">
+                    </div> -->
+
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" type="submit" [disabled]="createContactForm.invalid">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
