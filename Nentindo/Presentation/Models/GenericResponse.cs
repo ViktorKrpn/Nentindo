@@ -1,4 +1,4 @@
-﻿namespace Nentindo.Models
+﻿namespace Nentindo.Presentation.Models
 {
     public class GenericResponse<T>
     {

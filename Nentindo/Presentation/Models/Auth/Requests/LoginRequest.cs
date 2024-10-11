@@ -1,4 +1,4 @@
-﻿namespace Nentindo.Models.Auth.Requests
+﻿namespace Nentindo.Presentation.Models.Auth.Requests
 {
     public class LoginRequest
     {

@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.IdentityModel.Tokens;
 using Nentindo.Core.Domain.Users;
 using Nentindo.Data;
-using Nentindo.Models;
-using Nentindo.Models.Auth.Requests;
+using Nentindo.Presentation.Models;
+using Nentindo.Presentation.Models.Auth.Requests;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -53,7 +53,7 @@ namespace Nentindo.Services.Auth
             return response;
         }
 
-        public async Task<GenericResponse<User>> VerifyCredentials(Models.Auth.Requests.LoginRequest request)
+        public async Task<GenericResponse<User>> VerifyCredentials(Presentation.Models.Auth.Requests.LoginRequest request)
         {
             var response = new GenericResponse<User>();
 

@@ -1,0 +1,26 @@
+version: '3.7'
+services: 
+    backend:
+        container_name: docker-backend
+        build: 
+            context: ./Nentindo
+            dockerfile: Dockerfile
+        ports: 
+          - "8080:8080"
+    nentindosqlserver:
+        container_name: nentindosqlserver
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        environment:
+          - ACCEPT_EULA=Y
+          - MSSQL_SA_PASSWORD=Password1*
+        ports:
+          - "1433:1433"
+    angular:
+        container_name: angular
+        build: 
+            context: ./Angular
+            dockerfile: Dockerfile
+        ports: 
+          - "4200:4200"
+
+

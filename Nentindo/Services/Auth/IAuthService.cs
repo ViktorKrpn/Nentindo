@@ -1,6 +1,6 @@
 ﻿using Nentindo.Core.Domain.Users;
-using Nentindo.Models;
-using Nentindo.Models.Auth.Requests;
+using Nentindo.Presentation.Models;
+using Nentindo.Presentation.Models.Auth.Requests;
 
 namespace Nentindo.Services.Auth
 {

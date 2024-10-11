@@ -6,6 +6,7 @@ using System.Text;
 using Nentindo.Services.Auth;
 using Nentindo.Services.Contacts;
 
+//https://localhost:7229/
 public class AppStart()
 {
     public static void Main()
@@ -17,6 +18,8 @@ public class AppStart()
         builder.Services.AddDbContext<DatabaseContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDatabase")));
 
+        var connectionString = builder.Configuration.GetConnectionString("SqlDatabase");
+        Console.WriteLine($"Cons string {connectionString}");
 
         builder.Services.AddAuthorization();
 
@@ -47,7 +50,7 @@ public class AppStart()
             options.AddPolicy("AllowSpecificOrigins",
                 policy =>
                 {
-                    policy.WithOrigins("http://127.0.0.1:4200") // Allow Angular app origin
+                    policy.WithOrigins("http://127.0.0.1:4200", "http://localhost:4200", "http://angular:4200", "https://angular:4200") // Allow Angular app origin
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
@@ -87,6 +90,13 @@ public class AppStart()
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
+        Console.WriteLine("Hello from the other side 222");
+
+        //using (var scope = app.Services.CreateScope())
+        //{
+        //    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+        //    db.Database.Migrate();
+        //}
 
         app.Run();
 

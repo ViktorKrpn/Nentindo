@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Nentindo.Data;
-using Nentindo.Models;
-using System.Diagnostics;
 
-namespace Nentindo.Controllers
+namespace Nentindo.Presentation.Controllers
 {
     public class HomeController : Controller
     {

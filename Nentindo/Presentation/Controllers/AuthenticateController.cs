@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Nentindo.Models.Auth.Requests;
+using Nentindo.Presentation.Models.Auth.Requests;
 using Nentindo.Services.Auth;
 
-namespace Nentindo.Controllers
+namespace Nentindo.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

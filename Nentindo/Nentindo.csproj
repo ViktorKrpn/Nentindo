@@ -23,8 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Presentation\" />
     <Folder Include="Views\ContactsContoller\ViewModles\" />
   </ItemGroup>
 
