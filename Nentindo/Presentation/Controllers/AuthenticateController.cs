@@ -39,7 +39,7 @@ namespace Nentindo.Presentation.Controllers
                     return Ok(userResponse);
                 }
                 var token = _authService.GenerateToken(userResponse.Result);
-                return Ok(new { Token = token });
+                return Ok(new { access_token = token });
             }
             catch (Exception ex)
             {

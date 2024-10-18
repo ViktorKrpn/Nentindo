@@ -12,7 +12,7 @@ public class AppStart()
     public static void Main()
     {
         var builder = WebApplication.CreateBuilder();
-
+        //builder.WebHost.UseUrls(new[] { "https://localhost:7229" });
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddDbContext<DatabaseContext>(options =>
@@ -29,6 +29,8 @@ public class AppStart()
 
         var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
         var jwtKey = builder.Configuration.GetSection("Jwt:Secret").Get<string>();
+        var jwtAudience = builder.Configuration.GetSection("Jwt:Audience").Get<string>();
+
 
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
          .AddJwtBearer(options =>
@@ -40,7 +42,7 @@ public class AppStart()
                  ValidateLifetime = true,
                  ValidateIssuerSigningKey = true,
                  ValidIssuer = jwtIssuer,
-                 ValidAudience = jwtIssuer,
+                 ValidAudience = jwtAudience,
                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
              };
          });
@@ -52,7 +54,8 @@ public class AppStart()
                 {
                     policy.WithOrigins("http://127.0.0.1:4200", "http://localhost:4200", "http://angular:4200", "https://angular:4200") // Allow Angular app origin
                           .AllowAnyHeader()
-                          .AllowAnyMethod();
+                          .AllowAnyMethod()
+                          .AllowCredentials();
                 });
         });
 
@@ -64,6 +67,9 @@ public class AppStart()
 
 
         var app = builder.Build();
+
+        var s = app.Urls;
+      
 
         app.UseCors("AllowSpecificOrigins");
 
@@ -97,6 +103,17 @@ public class AppStart()
         //    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
         //    db.Database.Migrate();
         //}
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+
+            var context = services.GetRequiredService<DatabaseContext>();
+            if (context.Database.GetPendingMigrations().Any())
+            {
+                context.Database.Migrate();
+            }
+        }
 
         app.Run();
 

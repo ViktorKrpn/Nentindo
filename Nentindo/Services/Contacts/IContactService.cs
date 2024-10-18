@@ -9,6 +9,7 @@ namespace Nentindo.Services.Contacts
     {
         public Task<List<Contact>> GetContacts(Expression<Func<Contact, bool>> filter);
         public Task<GenericResponse<Contact>> CreateContact(CreateContactRequest request);
-
+        public Task<Dictionary<string, bool>> CheckIfEmailsExist(List<string> emails);
+        public Task<GenericResponse<string>> CreateBatchContacts(List<CreateContactRequest> contacts);
     }
 }

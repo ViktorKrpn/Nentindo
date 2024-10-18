@@ -19,11 +19,11 @@ COPY --from=build-env /out .
 #EXPOSE 7229
 
 # Run the application
-ENTRYPOINT ["dotnet", "Nentindo.dll", "--environment=Production"]]
+ENTRYPOINT ["dotnet", "Nentindo.dll", "--environment=Production"]
 
 
 # docker build -t docker-backend .
-# docker run -d -p 8080:8080 ''
+# docker run -d -p 7229:7229 docker-backend
 
 
 

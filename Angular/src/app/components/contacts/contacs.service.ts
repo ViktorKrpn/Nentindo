@@ -17,8 +17,6 @@ export class ContactsService {
   }
 
   getContacts(): Observable<IGenericResponse<IContact[]>> {
-    console.log(config)
-    console.log(this.contactsApiUrl)
     return this.http
       .get<IGenericResponse<IContact[]>>(this.contactsApiUrl)
   }

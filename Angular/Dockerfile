@@ -12,7 +12,7 @@ COPY . .
 
 RUN ng build --configuration=production
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--configuration", "production"]
 
 #FROM nginx:latest
 
@@ -23,4 +23,4 @@ CMD ["ng", "serve", "--host", "0.0.0.0"]
 
 
 # docker build -t docker-angular .
-# docker run -d -p 
+# docker run -d -p 4200:4200 docker-angular

@@ -65,5 +65,43 @@ namespace Nentindo.Services.Contacts
 
             return response;
         }
+
+        public async Task<GenericResponse<string>> CreateBatchContacts(List<CreateContactRequest> contacts)
+        {
+            var response = new GenericResponse<string>();
+            var amountInserted = 0;
+            var amountDuplicates = 0;
+
+
+            foreach (var contact in contacts)
+            {
+                var res = await CreateContact(contact);
+                if (res.IsSuccessful)
+                {
+                    amountInserted++;
+                } else
+                {
+                    amountDuplicates++;
+                }
+            }
+            response.Result = $"We have inserted {amountInserted} contacts. We have ingonered {amountDuplicates} contacts, because they are duplicates";
+
+            return response;
+        }
+
+
+
+        public async Task<Dictionary<string, bool>> CheckIfEmailsExist(List<string> emails)
+        {
+            var existingEmails = await _db.Contacts
+                .Where(c => emails.Contains(c.Email))
+                .Select(c => c.Email)
+                .ToListAsync();
+
+            var dictionary = emails.Distinct().ToDictionary(email => email, existingEmails.Contains);
+
+            return dictionary;
+        }
     }
+
 }

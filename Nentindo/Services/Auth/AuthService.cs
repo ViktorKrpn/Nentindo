@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.IdentityModel.Tokens;
 using Nentindo.Core.Domain.Users;
@@ -42,6 +43,7 @@ namespace Nentindo.Services.Auth
                 Email = request.Email,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
+                CompanyId = request.CompanyId,
             };
 
             newUser.PasswordHashed = _hasher.HashPassword(newUser, request.Password);
@@ -90,6 +92,7 @@ namespace Nentindo.Services.Auth
 
             //TODO: MAYBE ADD ROLES?
 
+            var secret = _config["Jwt:Secret"];
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
             
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

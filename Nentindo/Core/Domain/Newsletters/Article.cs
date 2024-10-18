@@ -19,6 +19,7 @@ namespace Nentindo.Core.Domain.Newsletters
         public virtual User CreatedByUser { get; set; }
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
+        // probably should be many to many
         public int? NewsletterId { get; set; }
         public virtual Newsletter Newsletter { get; set; }
 
