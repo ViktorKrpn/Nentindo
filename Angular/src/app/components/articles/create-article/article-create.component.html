@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Create an article</h3>
+            </div>
+            <form [formGroup]="createArticleForm" (ngSubmit)="submitArticleForm()">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <textarea class="form-control" id="title" formControlName="title" type="text"
+                            rows="2"></textarea>
+                        <div style="color:red"
+                            *ngIf="createArticleForm.get('title')?.invalid && createArticleForm.get('title')?.touched">
+                            Title is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Text</label>
+                        <textarea class="form-control" id="description" formControlName="description" type="text"
+                            rows="15"></textarea>
+                        <div style="color:red"
+                            *ngIf="createArticleForm.get('description')?.invalid && createArticleForm.get('description')?.touched">
+                            Text is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="summary">Summary</label>
+                        <textarea class="form-control" id="summary" formControlName="summary" rows="4"
+                            type="text"></textarea>
+                        <div style="color:red"
+                            *ngIf="createArticleForm.get('summary')?.invalid && createArticleForm.get('summary')?.touched">
+                            Summary is required
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" type="submit" [disabled]="createArticleForm.invalid">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

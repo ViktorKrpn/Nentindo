@@ -14,6 +14,8 @@ import { ContactCreateCsvFileComponent } from './components/contacts/contact-cre
 import { LoginComponent } from './components/login/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { TokenInterceptor } from './core/token-interceptor';
+import { ArticleCreateComponent } from './components/articles/create-article/article-create.component';
+import { ArticlesListComponent } from './components/articles/articles-list/articles-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +25,8 @@ import { TokenInterceptor } from './core/token-interceptor';
     ContactCreateCsvFileComponent,
     LoginComponent,
     LayoutComponent,
+    ArticleCreateComponent,
+    ArticlesListComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,8 +34,8 @@ import { TokenInterceptor } from './core/token-interceptor';
     ReactiveFormsModule,
     RouterLink,
     RouterOutlet,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()),
   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },],

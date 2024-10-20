@@ -35,7 +35,10 @@ export class LoginComponent {
       .login(loginRequest)
       .subscribe({
         next: () => {
-          this.router.navigateByUrl('/');
+          this.router.navigate(['']).then(() => {
+            // workaround: I need to reload the page because the links in layout component are not working
+            location.reload();
+          })
         },
         error: (error) => {
           console.log(error)
