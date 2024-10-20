@@ -15,7 +15,5 @@ namespace Nentindo.Core.Domain.Newsletters
         public virtual List<Article> Articles { get; set; } = [];
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
-
-
     }
 }

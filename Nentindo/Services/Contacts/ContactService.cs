@@ -1,34 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Nentindo.Core.Domain.Contacts;
+using Nentindo.Core.Domain.Users;
 using Nentindo.Data;
+using Nentindo.Presentation.Controllers;
 using Nentindo.Presentation.Models;
 using Nentindo.Presentation.Models.Contacts;
 using System.Linq.Expressions;
+using System.Security.Claims;
 
 namespace Nentindo.Services.Contacts
 {
-    public class ContactService: IContactService
+    public class ContactService: NentindoServiceBase, IContactService
     {
-        DatabaseContext _db;
-
-        public ContactService(DatabaseContext db)
+        public ContactService(DatabaseContext db, IHttpContextAccessor httpContextAccessor): base(db, httpContextAccessor)
         {
-            _db = db;
+
         }
+
         public async Task CreateContact(Contact contact)
         {
-            await _db.Contacts.AddAsync(contact);  
-            await _db.SaveChangesAsync();
+            await Db.Contacts.AddAsync(contact);  
+            await Db.SaveChangesAsync();
         }
-        public class GenericSearchRequest<T>
-        {
-            public int Id { get; set; }
-            public string SearchTerm { get; set; }
-        }
+
         public async Task<List<Contact>> GetContacts(Expression<Func<Contact, bool>> filter)
         {
-            return await _db.Contacts.Where(filter).ToListAsync();
+            return await Db.Contacts.Where(filter).ToListAsync();
         }
 
 
@@ -55,8 +53,8 @@ namespace Nentindo.Services.Contacts
                 SupplierId = request.SupplierId,
             };
 
-            await _db.Contacts.AddAsync(contact);
-            await _db.SaveChangesAsync();
+            await Db.Contacts.AddAsync(contact);
+            await Db.SaveChangesAsync();
 
             var createdContact = (await GetContacts(c => c.Email == request.Email))
                 .FirstOrDefault();
@@ -93,7 +91,7 @@ namespace Nentindo.Services.Contacts
 
         public async Task<Dictionary<string, bool>> CheckIfEmailsExist(List<string> emails)
         {
-            var existingEmails = await _db.Contacts
+            var existingEmails = await Db.Contacts
                 .Where(c => emails.Contains(c.Email))
                 .Select(c => c.Email)
                 .ToListAsync();

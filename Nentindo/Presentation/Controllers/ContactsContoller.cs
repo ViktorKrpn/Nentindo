@@ -1,19 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nentindo.Core.Domain.Contacts;
+using Nentindo.Data;
 using Nentindo.Presentation.Models;
 using Nentindo.Presentation.Models.Contacts;
 using Nentindo.Services.Contacts;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Nentindo.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [Authorize]
     [ApiController]
-    public class ContactsController : ControllerBase
+    public class ContactsController : NentindoControllerBase
     {
         IContactService _contactService;
-        public ContactsController(IContactService contactService)
+        public ContactsController(IContactService contactService, DatabaseContext db): base(db)
         {
             _contactService = contactService;
         }
@@ -21,6 +24,9 @@ namespace Nentindo.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetContacts()
         {
+            var authenticatedUser = CurrentUser() ;
+            var user2 = CurrentUser2;
+
             try
             {
                 var contacts = await _contactService.GetContacts(contact => true);

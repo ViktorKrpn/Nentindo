@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Nentindo.Services.Auth;
 using Nentindo.Services.Contacts;
+using Nentindo.Services.Articles;
 
 //https://localhost:7229/
 public class AppStart()
@@ -19,7 +20,8 @@ public class AppStart()
             options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDatabase")));
 
         var connectionString = builder.Configuration.GetConnectionString("SqlDatabase");
-        Console.WriteLine($"Cons string {connectionString}");
+
+        Console.WriteLine($"The SQL connection string is {connectionString}");
 
         builder.Services.AddAuthorization();
 
@@ -61,15 +63,13 @@ public class AppStart()
 
 
 
-
+        builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         builder.Services.AddTransient<IAuthService, AuthService>();
         builder.Services.AddTransient<IContactService, ContactService>();
+        builder.Services.AddTransient<IArticlesService, ArticlesService>();
 
 
         var app = builder.Build();
-
-        var s = app.Urls;
-      
 
         app.UseCors("AllowSpecificOrigins");
 
@@ -96,13 +96,6 @@ public class AppStart()
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
-        Console.WriteLine("Hello from the other side 222");
-
-        //using (var scope = app.Services.CreateScope())
-        //{
-        //    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-        //    db.Database.Migrate();
-        //}
 
         using (var scope = app.Services.CreateScope())
         {
@@ -116,6 +109,9 @@ public class AppStart()
         }
 
         app.Run();
+
+        Console.WriteLine("Nentindo has started :)");
+
 
     }
 }

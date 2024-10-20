@@ -17,7 +17,7 @@ namespace Nentindo.Services.Auth
     {
         DatabaseContext _db;
         PasswordHasher<User> _hasher;
-        private IConfiguration _config;
+        IConfiguration _config;
         public AuthService(DatabaseContext db, IConfiguration config)
         {
             _db = db;
@@ -90,9 +90,6 @@ namespace Nentindo.Services.Auth
                new Claim(ClaimTypes.Email, user.Email),
             };
 
-            //TODO: MAYBE ADD ROLES?
-
-            var secret = _config["Jwt:Secret"];
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
             
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
